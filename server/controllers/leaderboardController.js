@@ -18,6 +18,7 @@ leaderboardController.getLeaders = (req, res, next) => {
 
 leaderboardController.submitScore = (req, res, next) => {
     const { user, score } = req.body;
+    console.log('req.body', req.body)
     const values = [user, score]
     const text= `
     INSERT INTO users (username, score)
@@ -26,13 +27,11 @@ leaderboardController.submitScore = (req, res, next) => {
     db.query(text, values)
         .then(response => {
             console.log('Score Added to Leaderboard');
+            console.log('response', response)
             return next();
         })
         .catch((err) => next(err));
-
-
-    //need to add functionality here to add to add scores to database 
-}
+        }
 
 
 module.exports = leaderboardController;

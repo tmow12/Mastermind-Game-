@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import Leaderboard from './Leaderboard.jsx';
 import SubmitScore from './SubmitScore.jsx';
 
 function StartGame() {
     
-    //targetnumber type is string
     const [targetNumber, setTargetNumber] = useState();
     const [guess, setGuess] = useState();
     const [history, setHistory] = useState([])
@@ -60,8 +58,11 @@ function StartGame() {
         return result; 
     }
 
-    function submitGuess() {
+    function submitGuess(e) {
+        e.preventDefault();
+
         const hint = getHint(guess);
+
         const currGuess = {
           originalInput: guess,
           hint: hint,    
@@ -83,11 +84,12 @@ function StartGame() {
 
   return (
     <div>
-      <Leaderboard />
       <div>Guess the Four Digit Number</div>
+      <form onSubmit={(e)=> {submitGuess(e)}}>
       <label>Guess Number</label>
-      <input placeholder='number' onChange={(e)=>setGuess(e.target.value)} type='number'></input> 
-      <button onClick={submitGuess} disabled={history.length === 10 || winner === true}>Submit</button>
+      <input placeholder='number' onChange={(e)=>setGuess(e.target.value)} type='number' max='4444' size='4' maxLength='4'></input> 
+      <button disabled={history.length === 10 || winner === true}>Submit</button>
+      </form>
       <div>Guesses Remaining: {Math.abs(history.length-10)}</div>
       {winner && <div>
           You Won!!! Your Score is {score}
