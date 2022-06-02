@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const PORT = 3000;
-// const apiRouters = require('./routers/api');
+const apiRouters = require('./routers/api');
 const cors = require('cors');
 
 app.use(cors());
@@ -11,7 +11,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, "../build")));
 
-// app.use('/', apiRouters);
+app.use('/', apiRouters);
 
 app.use((req, res) => res.status(404).send('This is not the page you\'re looking for...'));
 
