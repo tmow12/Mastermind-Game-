@@ -17,7 +17,7 @@ function App() {
   if (start === true) {
       return (
         <div>
-            <StartGame difficulty={difficulty}/>
+            <StartGame difficulty={difficulty} startGame={startGame}/>
         </div>
       )
   }

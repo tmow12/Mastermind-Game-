@@ -20,10 +20,17 @@
 .instructions-container {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: center;
 }
 
 .gameboard-container {
     display: flex;
     flex-direction: row;
+}
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

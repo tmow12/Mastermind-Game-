@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import SubmitScore from './SubmitScore.js';
 
-function StartGame({ difficulty }) {
+function StartGame({ difficulty, startGame }) {
     
     const [targetNumber, setTargetNumber] = useState();
     const [guess, setGuess] = useState();
@@ -91,29 +91,31 @@ function StartGame({ difficulty }) {
      */
     function submitGuess(e) {
         e.preventDefault();
+            //add catch for empty string guess
+            const hint = getHint(guess);
 
-        const hint = getHint(guess);
-
-        const currGuess = {
-          originalInput: guess,
-          hint: hint,    
-        };
-
-        if (hint === 'OOOO') {
-            currGuess.hint = 'You are correct!'
-            setWinner(!winner)
-        }
-
-        if (hint === '') {
-            currGuess.hint = 'Nice try. Guess a different number!'
-        }
-
-        setHistory([...history, currGuess]);
-        setScore(history.length+1);
+            const currGuess = {
+              originalInput: guess,
+              hint: hint,    
+            };
+    
+            if (hint === 'OOOO') {
+                currGuess.hint = 'You are correct!'
+                setWinner(!winner)
+            }
+    
+            if (hint === '') {
+                currGuess.hint = 'Nice try. Guess a different number!'
+            }
+    
+            setHistory([...history, currGuess]);
+            setScore(history.length+1);
+        
     }
 
   return (
     <div>
+      <div className='game-container'>   
       <div className='instructions-container'>
       <h3>Instructions:</h3>
       {difficulty === 'Easy' && <div>The secret number is 4 digits long. Each integer in the number will be from 0-4 inclusive. </div>}
@@ -149,12 +151,14 @@ function StartGame({ difficulty }) {
       </div>
       {winner && <div>
           You gussed the correct number!!! Your score is {score}
-          <SubmitScore score={score} difficulty={difficulty}/>
+          <SubmitScore score={score} difficulty={difficulty} startGame={startGame}/>
           </div>}
       {history.length === startingGuesses && winner === false && <div>
-          You dummy you lost! The Secret number was {targetNumber}
-          </div>}
-      
+      <div>You dummy you lost! The Secret number was {targetNumber}</div>
+      <button onClick={startGame}>Restart Game</button>
+      </div>
+      }
+    </div>
     </div>
   )
 }

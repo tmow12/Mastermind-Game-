@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-function SubmitScore({ score, difficulty }) {
+function SubmitScore({ score, difficulty, startGame }) {
 
     const [user, setUser] = useState('');
     const [leader, setLeaders] = useState([])
@@ -44,9 +44,10 @@ function SubmitScore({ score, difficulty }) {
         ))}
     </ol>
         <form onSubmit={(e)=> submitToLeaderboard(e)}>
-        <input placeholder='Enter Username' onChange={(e)=>setUser(e.target.value)}></input>
+        <input placeholder='Enter Username' type ='text' onChange={(e)=>setUser(e.target.value)}></input>
         <button className='submit-score-button'>Submit Score</button>
         </form>
+        <button onClick={startGame}>Restart Game</button>
     </div>
   )
 }

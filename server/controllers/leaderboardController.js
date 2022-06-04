@@ -14,7 +14,6 @@ leaderboardController.getLeaders = (req, res, next) => {
     SELECT * FROM users 
     ORDER BY SCORE ASC LIMIT 10;
     `
-    
     db.query(text)
         .then(response => {
         console.log('this is from leaderboard', response.rows);
@@ -43,7 +42,7 @@ leaderboardController.submitScore = (req, res, next) => {
         .then(response => {
             return next();
         })
-        .catch((err) => next(err));
+        .catch((err) => {console.log(err);(err)});
 
 };
   //something wrong with querery here???
