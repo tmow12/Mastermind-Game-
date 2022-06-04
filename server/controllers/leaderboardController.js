@@ -2,10 +2,18 @@ const db = require("../models/leaderboardModel");
 
 const leaderboardController = {};
 
+/**
+ * This method will querey the database and return 10 users with the highest score
+ * @param {Object} req 
+ * @param {Object} res 
+ * @param {Function} next 
+ */
 leaderboardController.getLeaders = (req, res, next) => {
     const text = 
-    `SELECT * FROM users 
-    ORDER BY SCORE ASC LIMIT 10;`
+    `
+    SELECT * FROM users 
+    ORDER BY SCORE ASC LIMIT 10;
+    `
     
     db.query(text)
         .then(response => {
@@ -16,22 +24,28 @@ leaderboardController.getLeaders = (req, res, next) => {
         .catch((err) => next(err));
 };
 
+/**
+ * This method will accept a user profile and will store it in the database
+ * @param {Object} req 
+ * @param {Object} res 
+ * @param {Function} next 
+ */
 leaderboardController.submitScore = (req, res, next) => {
-    const { user, score } = req.body;
+    const { user, score, difficulty } = req.body;
     console.log('req.body', req.body)
-    const values = [user, score]
-    const text= `
-    INSERT INTO users (username, score)
-    VALUES ($1, $2);
-    `
+    const values = [user, score, difficulty]
+    console.log('values', values)
+    const text= 
+    `INSERT INTO users (username, score, difficulty)
+    VALUES ($1, $2, $3);`
+
     db.query(text, values)
         .then(response => {
-            console.log('Score Added to Leaderboard');
-            console.log('response', response)
             return next();
         })
         .catch((err) => next(err));
-        }
 
+};
+  //something wrong with querery here???
 
 module.exports = leaderboardController;

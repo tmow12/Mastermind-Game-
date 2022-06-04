@@ -1,22 +1,27 @@
 import React, { useState, useEffect } from 'react'
 
-function SubmitScore({ score }) {
+function SubmitScore({ score, difficulty }) {
 
     const [user, setUser] = useState('');
     const [leader, setLeaders] = useState([])
 
-    const getLeaders = useEffect(() => {
+    useEffect(() => {
       fetch('http://localhost:3000/leaderboardScore')
       .then(res => res.json())
       .then(data => setLeaders(data))
     }, [])
 
+    /**
+     * This function accepts a synethic event. It creates a user profle, and submits this to the leaderboard
+     * @param {Object} e 
+     */
    function submitToLeaderboard(e) {
        e.preventDefault();
 
        const userScore = {
            user: user,
            score: score,
+           difficulty: difficulty
        };
 
        fetch('http://localhost:3000/leaderboard', {
@@ -34,13 +39,13 @@ function SubmitScore({ score }) {
     <div>
         <h3>Leaderboard</h3> 
         <ol>
-        {leader.map(({ username, score }, index) => (
-            <li key={index}>User: {username} Score: {score}</li>
+        {leader.map(({ username, score, difficulty }, index) => (
+            <li key={index}>{username} Score: {score} Difficulty: {difficulty}</li>
         ))}
     </ol>
         <form onSubmit={(e)=> submitToLeaderboard(e)}>
         <input placeholder='Enter Username' onChange={(e)=>setUser(e.target.value)}></input>
-        <button>Submit Score</button>
+        <button className='submit-score-button'>Submit Score</button>
         </form>
     </div>
   )
