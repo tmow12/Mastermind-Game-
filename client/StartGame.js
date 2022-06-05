@@ -4,7 +4,6 @@ import SubmitScore from './SubmitScore.js';
 function StartGame({ difficulty, startGame }) {
     
     const [targetNumber, setTargetNumber] = useState();
-    // const [guess, setGuess] = useState();
     const [history, setHistory] = useState([]);
     const [winner, setWinner] = useState(false);
     const [score, setScore] = useState(0);
@@ -46,10 +45,11 @@ function StartGame({ difficulty, startGame }) {
     const startingGuesses = settings[difficulty].guesses;
 
     /**
-     * This useEffect hook wil generate a random number for the user to guess
+     * This useEffect hook will generate a random number for the user to guess
      */
     useEffect(() => {
-        fetch(`https://www.random.org/integers/?num=${digitLength}&min=0&max=${maxIntLength}&col=4&base=10&format=plain&rnd=new`)            .then(response => response.text())
+        fetch(`https://www.random.org/integers/?num=${digitLength}&min=0&max=${maxIntLength}&col=4&base=10&format=plain&rnd=new`)            
+        .then(response => response.text())
         .then(data => data.replace(/\s/g, ''))                
         .then(data => setTargetNumber(data))
     }, [])
@@ -108,9 +108,7 @@ function StartGame({ difficulty, startGame }) {
      */
     function submitGuess(e) {
         e.preventDefault();
-    
         const guess = createGuess();
-
         const hint = getHint(guess);
 
         const currGuess = {
@@ -125,7 +123,6 @@ function StartGame({ difficulty, startGame }) {
         if (hint === '') {
             currGuess.hint = 'Nice try. Guess a different number!';
         }
-            
         setHistory([...history, currGuess]);
         setScore(history.length+1);
     }
