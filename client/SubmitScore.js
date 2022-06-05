@@ -3,8 +3,13 @@ import React, { useState, useEffect } from 'react'
 function SubmitScore({ score, difficulty, startGame }) {
 
     const [user, setUser] = useState('');
-    const [leader, setLeaders] = useState([])
+    const [leader, setLeaders] = useState([]);
+    const [pokemon, setPokemon] = useState();
+    const [disable, setDisable] = useState(false);
 
+/**
+ * This hook will fetch the leaderboard information on component mount
+ */
     useEffect(() => {
       fetch('http://localhost:3000/leaderboardScore')
       .then(res => res.json())
@@ -12,7 +17,7 @@ function SubmitScore({ score, difficulty, startGame }) {
     }, [])
 
     /**
-     * This function accepts a synethic event. It creates a user profle, and submits this to the leaderboard
+     * This function accepts a an event. It creates a user profle, and submits it to the leaderboard
      * @param {Object} e 
      */
    function submitToLeaderboard(e) {
@@ -24,7 +29,7 @@ function SubmitScore({ score, difficulty, startGame }) {
            difficulty: difficulty
        };
 
-       fetch('http://localhost:3000/leaderboard', {
+       fetch('http://localhost:3000/submitToLeaderboard', {
            method: 'POST',
            headers: {
                'Content-Type': 'application/json'
@@ -33,21 +38,44 @@ function SubmitScore({ score, difficulty, startGame }) {
        })
         .then(res => res.json())
         .then(response => setLeaders(response))
+        .then(next => setDisable(true));
     }
+
+    function getPokemon() {
+        const num = Math.floor(Math.random() * (151 - 1 + 1) + 1)
+        fetch(`https://pokeapi.co/api/v2/pokemon/${num}`)
+        .then(res => res.json())
+        .then(data => setPokemon(data.sprites.front_default))
+    }
+    console.log('leaders', leader);
 
   return (
     <div>
+        <div className='leaderboard-container'>
         <h3>Leaderboard</h3> 
         <ol>
         {leader.map(({ username, score, difficulty }, index) => (
-            <li key={index}>{username} Score: {score} Difficulty: {difficulty}</li>
+            <li key={index}>{username} Score: {score} ---- Difficulty: {difficulty}</li>
         ))}
     </ol>
+        <img className='pokemon_img' src={pokemon}></img>
+        <div className='form-container'>
         <form onSubmit={(e)=> submitToLeaderboard(e)}>
-        <input placeholder='Enter Username' type ='text' onChange={(e)=>setUser(e.target.value)}></input>
-        <button className='submit-score-button'>Submit Score</button>
+        <input 
+        placeholder='Enter Username' 
+        type ='text' 
+        onChange={(e)=>setUser(e.target.value)} 
+        required
+        disabled={disable}>
+        </input>
+        <button className='submit-score-button' disabled={disable}>Submit Score</button>
         </form>
+        <div className='button-container'>
         <button onClick={startGame}>Restart Game</button>
+        <button onClick={getPokemon}>Easter Egg</button>
+        </div>
+        </div>
+        </div>
     </div>
   )
 }

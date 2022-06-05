@@ -10,10 +10,9 @@ router.get('/leaderboardScore', leaderboardController.getLeaders, (req, res) => 
 });
 
 
-router.post('/leaderboard', leaderboardController.submitScore, leaderboardController.getLeaders, (req, res) => {
+router.post('/submitToLeaderboard', leaderboardController.submitScore, leaderboardController.getLeaders, (req, res) => {
     return res.status(200).json(res.locals.leaderboard);
 });
-
 
 
 

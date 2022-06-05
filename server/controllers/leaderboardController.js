@@ -1,4 +1,5 @@
 const db = require("../models/leaderboardModel");
+const { response } = require("../server");
 
 const leaderboardController = {};
 
@@ -12,7 +13,7 @@ leaderboardController.getLeaders = (req, res, next) => {
     const text = 
     `
     SELECT * FROM users 
-    ORDER BY SCORE ASC LIMIT 10;
+    ORDER BY SCORE ASC, username LIMIT 10;
     `
     db.query(text)
         .then(response => {
@@ -42,9 +43,7 @@ leaderboardController.submitScore = (req, res, next) => {
         .then(response => {
             return next();
         })
-        .catch((err) => {console.log(err);(err)});
-
+        .catch((err) => (err));
 };
-  //something wrong with querery here???
 
 module.exports = leaderboardController;
