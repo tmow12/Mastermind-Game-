@@ -5,7 +5,7 @@ const Dotenv = require('dotenv-webpack');
 
 module.exports = {
     mode: process.env.NODE_ENV,
-    entry: ['babel-polyfill', './client/index.js'],
+    entry: ['./client/index.js'],
     output: {
         path: path.resolve('build'),
         filename: 'bundle.js',
@@ -14,32 +14,32 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.(jsx?)$/,
-                exclude: /node_modules/,
-                use: {
-                  loader: 'babel-loader',
-                  options: {
-                    presets: ['@babel/preset-env', '@babel/preset-react'],
-                  },
-                },
-              },
+              test: /\.(js|jsx)$/,
+              exclude: /(node_modules|bower_components)/,
+              loader: 'babel-loader',
+              options: { presets: ['@babel/env'] },
+            },
+            {
+              test: /\.s[ac]ss$/i,
+              use: ['style-loader', 'css-loader', 'sass-loader'],
+            },
             {
                 test: /\.(png|jpg|gif)$/i,
                 use:[{
                         loader: 'file-loader',
                 }]
             },
-            {
-                test: /\.s?[ac]ss$/i,
-                exclude: /node_modules/,
-                use: [
-                  process.env.NODE_ENV === 'production'
-                    ? MiniCssExtractPlugin.loader
-                    : 'style-loader',
-                  'css-loader',
-                  'sass-loader',
-                ],
-              },
+            // {
+            //     test: /\.s?[ac]ss$/i,
+            //     exclude: /node_modules/,
+            //     use: [
+            //       process.env.NODE_ENV === 'production'
+            //         ? MiniCssExtractPlugin.loader
+            //         : 'style-loader',
+            //       'css-loader',
+            //       'sass-loader',
+            //     ],
+            //   },
         ],
     },
     devServer: {

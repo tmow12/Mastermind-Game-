@@ -17,7 +17,6 @@ leaderboardController.getLeaders = (req, res, next) => {
     `
     db.query(text)
         .then(response => {
-        console.log('this is from leaderboard', response.rows);
         res.locals.leaderboard = response.rows;
         return next();
         })
@@ -32,9 +31,7 @@ leaderboardController.getLeaders = (req, res, next) => {
  */
 leaderboardController.submitScore = (req, res, next) => {
     const { user, score, difficulty } = req.body;
-    console.log('req.body', req.body)
     const values = [user, score, difficulty]
-    console.log('values', values)
     const text= 
     `INSERT INTO users (username, score, difficulty)
     VALUES ($1, $2, $3);`
@@ -43,7 +40,8 @@ leaderboardController.submitScore = (req, res, next) => {
         .then(response => {
             return next();
         })
-        .catch((err) => (err));
+        .catch((err) => next(err));
 };
 
 module.exports = leaderboardController;
+

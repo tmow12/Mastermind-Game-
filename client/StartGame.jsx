@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import SubmitScore from './SubmitScore.js';
+import SubmitScore from './SubmitScore.jsx';
+
+
 
 function StartGame({ difficulty, startGame }) {
-    
+   
     const [targetNumber, setTargetNumber] = useState();
     const [history, setHistory] = useState([]);
     const [winner, setWinner] = useState(false);
     const [score, setScore] = useState(0);
-
     const [input1, setInput1] = useState(0);
     const [input2, setInput2] = useState(0);
     const [input3, setInput3] = useState(0);
@@ -132,13 +133,14 @@ function StartGame({ difficulty, startGame }) {
       <div className='game-container'>   
       <div className='instructions-container'>
       <h3>Instructions:</h3>
-      {difficulty === 'Easy' && <div>The secret number is 4 digits long. Each integer in the number will be from 0-4 inclusive. </div>}
-      {difficulty === 'Medium' && <div>The secret number is 4 digits long. Each integer in the number will be from 0-5 inclusive. </div>}
-      {difficulty === 'Hard' && <div>The secret number is 5 digits long. Each integer in the number will be from 0-6 inclusive. </div>}
-      <div>You will get a hint after every guess</div>
-      <div>An X represents a number you guessed was correct but in the wrong location</div>
-      <div>An O represents a number you guessed was correct and in the right location</div>
-      <div>Note: The position of the X and O's are not correlated to the position of the in your guess or the secret number</div>
+      <div>Guess the secret number</div>
+      {difficulty === 'Easy' && <div>The secret number is 4 digits long. Each integer in the secret number will be from 0-4 inclusive. </div>}
+      {difficulty === 'Medium' && <div>The secret number is 4 digits long. Each integer in the secret number will be from 0-5 inclusive. </div>}
+      {difficulty === 'Hard' && <div>The secret number is 5 digits long. Each integer in the secret number will be from 0-6 inclusive. </div>}
+      <div>You will get a hint after every guess.</div>
+      <div>An X represents a number you guessed was correct but in the wrong location.</div>
+      <div>An O represents a number you guessed was correct and in the right location.</div>
+      <div>Note: The position of the X and O's are not correlated to the position of the in your guess or the secret number.</div>
       </div>
       <div className='gameboard-container'>
       <div className='form-container'>
@@ -149,7 +151,8 @@ function StartGame({ difficulty, startGame }) {
         max={settings[difficulty].maxInt.toString()} 
         disabled={history.length === startingGuesses || winner === true}
         type='number'
-        min='0'>
+        min='0'
+        maxLength={1}>
         </input> 
         <input 
         className='input2'
@@ -157,7 +160,8 @@ function StartGame({ difficulty, startGame }) {
         max={settings[difficulty].maxInt.toString()} 
         disabled={history.length === startingGuesses || winner === true}
         type='number'
-        min='0'>
+        min='0'
+        maxLength={1}>
         </input> 
         <input 
         className='input3'
@@ -165,7 +169,8 @@ function StartGame({ difficulty, startGame }) {
         max={settings[difficulty].maxInt.toString()} 
         disabled={history.length === startingGuesses || winner === true}
         type='number'
-        min='0'>
+        min='0'
+        maxLength={1}>
         </input> 
         <input 
         className='input4'
@@ -173,7 +178,8 @@ function StartGame({ difficulty, startGame }) {
         max={settings[difficulty].maxInt.toString()} 
         disabled={history.length === startingGuesses || winner === true}
         type='number'
-        min='0'>
+        min='0'
+        maxLength={1}>
         </input> 
         {difficulty === 'Hard' && <input 
         className='input5'
@@ -181,9 +187,15 @@ function StartGame({ difficulty, startGame }) {
         max={settings[difficulty].maxInt.toString()} 
         disabled={history.length === startingGuesses || winner === true}
         type='number'
-        min='0'>
+        min='0'
+        maxLength={1}>
         </input>}
-      <button className='submit-guess-button' disabled={history.length === startingGuesses || winner === true}>Submit</button>
+      <button 
+      className='submit-guess-button' 
+      disabled={history.length === startingGuesses || winner === true}
+      data-testid='submit-guess-button-1'>
+          Submit
+          </button>
       </form>
       <div>Guesses Remaining: {startingGuesses-history.length}</div>
       </div>
@@ -193,6 +205,7 @@ function StartGame({ difficulty, startGame }) {
           <li key={index}>You guessed: {originalInput} Hint: {hint}</li>
         ))}
       </ul>
+      
       </div>
       </div>
       {winner && <div>

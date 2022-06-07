@@ -11,7 +11,7 @@ function SubmitScore({ score, difficulty, startGame }) {
  * This hook will fetch the leaderboard information on component mount
  */
     useEffect(() => {
-      fetch('http://localhost:3000/leaderboardScore')
+      fetch('http://localhost:3000/getLeaderboardScore')
       .then(res => res.json())
       .then(data => setLeaders(data))
     }, [])
@@ -28,7 +28,7 @@ function SubmitScore({ score, difficulty, startGame }) {
            score: score,
            difficulty: difficulty
        };
-
+       
        fetch('http://localhost:3000/submitToLeaderboard', {
            method: 'POST',
            headers: {
@@ -55,9 +55,9 @@ function SubmitScore({ score, difficulty, startGame }) {
         <h3>Leaderboard</h3> 
         <ol>
         {leader.map(({ username, score, difficulty }, index) => (
-            <li key={index}>{username} Score: {score} ---- Difficulty: {difficulty}</li>
+            <li key={index}>{username} ---- Score: {score} ---- Difficulty: {difficulty}</li>
         ))}
-    </ol>
+        </ol>
         <img className='pokemon_img' src={pokemon}></img>
         <div className='form-container'>
         <form onSubmit={(e)=> submitToLeaderboard(e)}>

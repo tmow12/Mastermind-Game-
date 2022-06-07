@@ -5,7 +5,7 @@ const path = require('path');
 const leaderboardController = require('../controllers/leaderboardController');
 
 
-router.get('/leaderboardScore', leaderboardController.getLeaders, (req, res) => {
+router.get('/getLeaderboardScore', leaderboardController.getLeaders, (req, res) => {
     return res.status(200).json(res.locals.leaderboard);
 });
 

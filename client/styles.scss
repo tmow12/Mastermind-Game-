@@ -6,7 +6,7 @@
     background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
     background-size: 400% 400%;
     animation: gradient 30s ease infinite;
-    height: 110vh;
+    height: 120vh;
 }
 
 .difficulty-container {
@@ -44,7 +44,7 @@
     background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
     background-size: 400% 400%;
     animation: gradient 30s ease infinite;
-    height: 110vh;
+    height: 120vh;
 }
 
 .leaderboard-container {
@@ -57,8 +57,12 @@
 .form-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+}
+
+.brain-logo {
+    width: 150px;
+    height: 150px;
 }
 
 @keyframes gradient {
@@ -72,3 +76,4 @@
       background-position: 0% 50%;
     }
   }
+
