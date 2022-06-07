@@ -28,14 +28,25 @@ describe('Route integration', () => {
 
   describe('/submitToLeaderboard', () => {
     describe('POST', () => {
-        it('responds with a 200 status and application/json content type', () => {
+        beforeAll(() => {
+            const mockDb = new server
+        })
+
+        xit('responds with a 200 status and application/json content type', () => {
+            const requestBody = {
+                user: 'testtestest',
+                score: 1,
+                difficulty: 'Easy'
+            };
             return request(server)
-                .get('/getLeaderboardScore')
+                .post('/submitToLeaderboard')
+                .send(requestBody)
                 .expect('Content-Type', /application\/json/)
                 .expect(200)
-        }) 
+        })
     })
   })
+
 
 
 })

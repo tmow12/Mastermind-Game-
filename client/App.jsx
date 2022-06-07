@@ -16,6 +16,7 @@ function App() {
         setStart(!start);
     }
 
+    //conditionally render StarGame component 
   if (start === true) {
       return (
         <div>

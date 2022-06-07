@@ -27,7 +27,8 @@
     ],
     "moduleNameMapper": {
       "^.+\\.(css|less|scss|png)$": "babel-jest"
-    }
+    },
+    "testTimeout": 20000
   },
   "homepage": "https://github.com/tmow12/Mastermind-Game-#readme",
   "dependencies": {

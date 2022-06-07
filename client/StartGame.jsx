@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import SubmitScore from './SubmitScore.jsx';
-
-
+import getHint from './utlities/getHint.js';
 
 function StartGame({ difficulty, startGame }) {
-   
     const [targetNumber, setTargetNumber] = useState();
     const [history, setHistory] = useState([]);
     const [winner, setWinner] = useState(false);
@@ -15,11 +13,6 @@ function StartGame({ difficulty, startGame }) {
     const [input4, setInput4] = useState(0);
     const [input5, setInput5] = useState(0);
 
-  //target number is 4443
-  // 1234 -> XX
-  // 4444 -> OOO
-  // 5555 ->
-  // 1344 -> XOX
   /**This object contains the settings that the user can select
    * @type {Object}
    */
@@ -54,54 +47,8 @@ function StartGame({ difficulty, startGame }) {
         .then(data => data.replace(/\s/g, ''))                
         .then(data => setTargetNumber(data))
     }, [])
-  
-    console.log('targetnumber', targetNumber)
 
-/**
- * This function will return the users guess
- * @returns {integer}
- */
-    function createGuess() {
-        if (difficulty !== 'Hard') {
-            let guess = [input1, input2, input3, input4,].join('');
-            return guess;
-        } else {
-            let guess = [input1, input2, input3, input4, input5].join('');
-            return guess; 
-        }
-    }
-
-/**
- * This function will accept a user's guess and return a hint
- * @param {string} userGuess 
- * @returns {string} 
- */
-    function getHint(userGuess) {
-        let userHint = '';
-        const guessCache = {};
-        const targetNumCache = {};
-
-        for (let i = 0; i < userGuess.length; i++) {
-            if (userGuess[i] === targetNumber[i]) {
-                userHint+='O';
-                continue;
-            } else {
-                if (targetNumCache[userGuess[i]]) {
-                    targetNumCache[userGuess[i]]--;
-                    userHint+='X';
-                } else {
-                    guessCache[userGuess[i]] = 1;
-                }
-                if (guessCache[targetNumber[i]]) {
-                    guessCache[targetNumber[i]]--;
-                    userHint+='X';
-                } else {
-                    targetNumCache[targetNumber[i]] = 1;
-                }
-            }
-        }
-        return userHint; 
-    }
+    console.log('targetnumber is', targetNumber)
 
     /**
      * This function accepts an event and will submit a user guess and checks for a winning guess
@@ -109,21 +56,37 @@ function StartGame({ difficulty, startGame }) {
      */
     function submitGuess(e) {
         e.preventDefault();
-        const guess = createGuess();
-        const hint = getHint(guess);
+    
+        let userGuess;
 
+        //check difficulty selected to determine how many inputs need to be rendered
+        if (difficulty !== 'Hard') {
+            userGuess = [input1, input2, input3, input4,].join('');
+        } else {
+            userGuess = [input1, input2, input3, input4, input5].join('');
+        }
+        
+        //create a hint 
+        const hint = getHint(userGuess, targetNumber);
+
+        //create a guess entry this will be used to render a history of guesses
         const currGuess = {
-            originalInput: guess,
+            originalInput: userGuess,
             hint: hint,    
         };
     
+        //check for winning combination, if true set winner
         if (hint === 'OOOO' || hint === 'OOOOO') {
             currGuess.hint = 'You are correct!';
             setWinner(!winner);
         }
+
+        //edge case here if no guessed numbers are correct, notify user to guess again
         if (hint === '') {
             currGuess.hint = 'Nice try. Guess a different number!';
         }
+
+        //add submission to history and update score
         setHistory([...history, currGuess]);
         setScore(history.length+1);
     }

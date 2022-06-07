@@ -8,12 +8,14 @@ function SubmitScore({ score, difficulty, startGame }) {
     const [disable, setDisable] = useState(false);
 
 /**
- * This hook will fetch the leaderboard information on component mount
+ * This useEffect hook will fetch the leaderboard information on component mount
  */
     useEffect(() => {
       fetch('http://localhost:3000/getLeaderboardScore')
       .then(res => res.json())
-      .then(data => setLeaders(data))
+      .then(data => {
+          console.log('data from database', data);
+          setLeaders(data);})
     }, [])
 
     /**
@@ -41,13 +43,15 @@ function SubmitScore({ score, difficulty, startGame }) {
         .then(next => setDisable(true));
     }
 
+    /**
+     * Easter Egg function to retrieve random pokemon :D
+     */
     function getPokemon() {
         const num = Math.floor(Math.random() * (151 - 1 + 1) + 1)
         fetch(`https://pokeapi.co/api/v2/pokemon/${num}`)
         .then(res => res.json())
         .then(data => setPokemon(data.sprites.front_default))
     }
-    console.log('leaders', leader);
 
   return (
     <div>
