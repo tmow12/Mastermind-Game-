@@ -7,7 +7,7 @@ module.exports = {
     mode: process.env.NODE_ENV,
     entry: ['./client/index.js'],
     output: {
-        path: path.resolve('build'),
+        path: path.resolve('dist'),
         filename: 'bundle.js',
     },
     plugins: [new MiniCssExtractPlugin(), new HtmlWebpackPlugin({template: './dev.html'}), new Dotenv()],
