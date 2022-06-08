@@ -12,7 +12,4 @@ router.post('/submitToLeaderboard', leaderboardController.submitScore, leaderboa
     return res.status(200).json(res.locals.leaderboard);
 });
 
-
-
-
 module.exports = router;

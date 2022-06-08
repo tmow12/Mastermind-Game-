@@ -1,5 +1,4 @@
 const db = require("../models/leaderboardModel");
-const { response } = require("../server");
 
 const leaderboardController = {};
 

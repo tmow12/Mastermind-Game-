@@ -13,9 +13,7 @@ function SubmitScore({ score, difficulty, startGame }) {
     useEffect(() => {
       fetch('http://localhost:3000/getLeaderboardScore')
       .then(res => res.json())
-      .then(data => {
-          console.log('data from database', data);
-          setLeaders(data);})
+      .then(data => setLeaders(data))
     }, [])
 
     /**

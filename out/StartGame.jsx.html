@@ -1,4 +1,32 @@
-import React, { useState, useEffect } from 'react';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: StartGame.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: StartGame.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState, useEffect } from 'react';
 import SubmitScore from './SubmitScore.jsx';
 import getHint from './util/getHint.js';
 
@@ -42,7 +70,7 @@ function StartGame({ difficulty, startGame }) {
      * This useEffect hook will generate a random number for the user to guess
      */
     useEffect(() => {
-        fetch(`https://www.random.org/integers/?num=${digitLength}&min=0&max=${maxIntLength}&col=4&base=10&format=plain&rnd=new`)            
+        fetch(`https://www.random.org/integers/?num=${digitLength}&amp;min=0&amp;max=${maxIntLength}&amp;col=4&amp;base=10&amp;format=plain&amp;rnd=new`)            
         .then(response => response.text())
         .then(data => data.replace(/\s/g, ''))                
         .then(data => setTargetNumber(data))
@@ -93,23 +121,23 @@ function StartGame({ difficulty, startGame }) {
     }
 
   return (
-    <div>
-      <div className='game-container'>   
-      <div className='instructions-container'>
-      <h3>Instructions:</h3>
-      <div>Guess the secret number</div>
-      {difficulty === 'Easy' && <div>The secret number is 4 digits long. Each integer in the secret number will be from 0-4 inclusive</div>}
-      {difficulty === 'Medium' && <div>The secret number is 4 digits long. Each integer in the secret number will be from 0-5 inclusive</div>}
-      {difficulty === 'Hard' && <div>The secret number is 5 digits long. Each integer in the secret number will be from 0-6 inclusive</div>}
-      <div>You will get a hint after every guess</div>
-      <div>An X represents a number you guessed was correct but in the wrong location</div>
-      <div>An O represents a number you guessed was correct and in the right location</div>
-      <div>Note: The position of the X and O's are not correlated to the position of the numbers in your guess or the secret number</div>
-      </div>
-      <div className='gameboard-container'>
-      <div className='form-container'>
-      <form onSubmit={(e)=> {submitGuess(e)}}>
-      <input 
+    &lt;div>
+      &lt;div className='game-container'>   
+      &lt;div className='instructions-container'>
+      &lt;h3>Instructions:&lt;/h3>
+      &lt;div>Guess the secret number&lt;/div>
+      {difficulty === 'Easy' &amp;&amp; &lt;div>The secret number is 4 digits long. Each integer in the secret number will be from 0-4 inclusive. &lt;/div>}
+      {difficulty === 'Medium' &amp;&amp; &lt;div>The secret number is 4 digits long. Each integer in the secret number will be from 0-5 inclusive. &lt;/div>}
+      {difficulty === 'Hard' &amp;&amp; &lt;div>The secret number is 5 digits long. Each integer in the secret number will be from 0-6 inclusive. &lt;/div>}
+      &lt;div>You will get a hint after every guess.&lt;/div>
+      &lt;div>An X represents a number you guessed was correct but in the wrong location.&lt;/div>
+      &lt;div>An O represents a number you guessed was correct and in the right location.&lt;/div>
+      &lt;div>Note: The position of the X and O's are not correlated to the position of the in your guess or the secret number.&lt;/div>
+      &lt;/div>
+      &lt;div className='gameboard-container'>
+      &lt;div className='form-container'>
+      &lt;form onSubmit={(e)=> {submitGuess(e)}}>
+      &lt;input 
         className='input1'
         placeholder='0' onChange={(e)=>setInput1(e.target.value)} 
         max={settings[difficulty].maxInt.toString()} 
@@ -117,8 +145,8 @@ function StartGame({ difficulty, startGame }) {
         type='number'
         min='0'
         maxLength='1'>
-        </input> 
-        <input 
+        &lt;/input> 
+        &lt;input 
         className='input2'
         placeholder='0' onChange={(e)=>setInput2(e.target.value)} 
         max={settings[difficulty].maxInt.toString()} 
@@ -126,8 +154,8 @@ function StartGame({ difficulty, startGame }) {
         type='number'
         min='0'
         maxLength='1'>
-        </input> 
-        <input 
+        &lt;/input> 
+        &lt;input 
         className='input3'
         placeholder='0' onChange={(e)=>setInput3(e.target.value)} 
         max={settings[difficulty].maxInt.toString()} 
@@ -135,8 +163,8 @@ function StartGame({ difficulty, startGame }) {
         type='number'
         min='0'
         maxLength='1'>
-        </input> 
-        <input 
+        &lt;/input> 
+        &lt;input 
         className='input4'
         placeholder='0' onChange={(e)=>setInput4(e.target.value)} 
         max={settings[difficulty].maxInt.toString()} 
@@ -144,8 +172,8 @@ function StartGame({ difficulty, startGame }) {
         type='number'
         min='0'
         maxLength='1'>
-        </input> 
-        {difficulty === 'Hard' && <input 
+        &lt;/input> 
+        {difficulty === 'Hard' &amp;&amp; &lt;input 
         className='input5'
         placeholder='0' onChange={(e)=>setInput5(e.target.value)} 
         max={settings[difficulty].maxInt.toString()} 
@@ -153,36 +181,58 @@ function StartGame({ difficulty, startGame }) {
         type='number'
         min='0'
         maxLength='1'>
-        </input>}
-      <button 
+        &lt;/input>}
+      &lt;button 
       className='submit-guess-button' 
       disabled={history.length === startingGuesses || winner === true}
       data-testid='submit-guess-button-1'>
           Submit
-          </button>
-      </form>
-      <div>Guesses Remaining: {startingGuesses-history.length}</div>
-      </div>
-      <div className='history-container'>
-      <ul>History
+          &lt;/button>
+      &lt;/form>
+      &lt;div>Guesses Remaining: {startingGuesses-history.length}&lt;/div>
+      &lt;/div>
+      &lt;div className='history-container'>
+      &lt;ul>History
         {history.map(({ originalInput, hint }, index) => (
-          <li key={index}>You guessed: {originalInput} Hint: {hint}</li>
+          &lt;li key={index}>You guessed: {originalInput} Hint: {hint}&lt;/li>
         ))}
-      </ul>
-      </div>
-      </div>
-      {winner && <div>
+      &lt;/ul>
+      &lt;/div>
+      &lt;/div>
+      {winner &amp;&amp; &lt;div>
           You gussed the correct number!!! Your score is {score}
-          <SubmitScore score={score} difficulty={difficulty} startGame={startGame}/>
-          </div>}
-      {history.length === startingGuesses && winner === false && <div>
-      <div>You lost...the Secret number was {targetNumber}</div>
-      <button onClick={startGame}>Restart Game</button>
-      </div>
+          &lt;SubmitScore score={score} difficulty={difficulty} startGame={startGame}/>
+          &lt;/div>}
+      {history.length === startingGuesses &amp;&amp; winner === false &amp;&amp; &lt;div>
+      &lt;div>You lost...The Secret number was {targetNumber}&lt;/div>
+      &lt;button onClick={startGame}>Restart Game&lt;/button>
+      &lt;/div>
       }
-    </div>
-    </div>
+    &lt;/div>
+    &lt;/div>
   )
 }
 
-export default StartGame
+export default StartGame</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Wed Jun 08 2022 11:28:35 GMT-0700 (Pacific Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

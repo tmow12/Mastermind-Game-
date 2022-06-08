@@ -3,15 +3,12 @@ import StartGame from './StartGame.jsx';
 import './styles.scss';
 import brain from './assets/brain.png';
 
-
 function App() {
 
   const [start, setStart] = useState(false)
   const [difficulty, setDifficulty] = useState()
 
-    /**
-     * This function starts the game 
-     */
+   //This function will start the game
     function startGame() {
         setStart(!start);
     }

@@ -72,7 +72,7 @@ describe('testing postgres connection', () => {
   })
 });
 
-describe('Route integration', () => {
+describe('route integration', () => {
     describe('/', () => {
       describe('initial GET request', () => {
         it('responds with 200 status and text/html content type', () => {
@@ -85,7 +85,7 @@ describe('Route integration', () => {
   })
 
   describe('/getLeaderboardScore', () => {
-    describe('GET request for leaderboard', () => {
+    describe('GET request to leaderboard', () => {
         it('responds with a 200 status and application/json content type', () => {
             return request(server)
                 .get('/getLeaderboardScore')
