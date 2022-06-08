@@ -28,13 +28,9 @@ describe('Route integration', () => {
 
   describe('/submitToLeaderboard', () => {
     describe('POST', () => {
-        beforeAll(() => {
-            const mockDb = new server
-        })
-
-        xit('responds with a 200 status and application/json content type', () => {
+        it('responds with a 200 status and application/json content type', () => {
             const requestBody = {
-                user: 'testtestest',
+                user: 'test',
                 score: 1,
                 difficulty: 'Easy'
             };

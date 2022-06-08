@@ -1,4 +1,4 @@
-const getHint = require('../client/utlities/getHint.js');
+const getHint = require('../client/util/getHint.js');
 
 describe('Determines correct hint', () => {
  

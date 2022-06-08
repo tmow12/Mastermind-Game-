@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-const PORT = 3000;
+
 const apiRouters = require('./routers/api');
 const cors = require('cors');
 
@@ -24,10 +24,6 @@ app.use((err, req, res, next) => {
     const errorObj = Object.assign({}, defaultErr, err);
     console.log(errorObj.log);
     return res.status(errorObj.status).json(errorObj.message);
-});
-
-app.listen(PORT, () => {
-    console.log(`Server is listening on port: http://localhost:${PORT}`)
 });
 
 module.exports = app;

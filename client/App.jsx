@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import StartGame from './StartGame.jsx';
 import './styles.scss';
-import brain from './assets/brain.png'
+import brain from './assets/brain.png';
 
 
 function App() {
@@ -16,7 +16,6 @@ function App() {
         setStart(!start);
     }
 
-    //conditionally render StarGame component 
   if (start === true) {
       return (
         <div>

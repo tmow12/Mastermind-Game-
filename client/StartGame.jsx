@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import SubmitScore from './SubmitScore.jsx';
-import getHint from './utlities/getHint.js';
+import getHint from './util/getHint.js';
 
 function StartGame({ difficulty, startGame }) {
     const [targetNumber, setTargetNumber] = useState();
@@ -69,13 +69,13 @@ function StartGame({ difficulty, startGame }) {
         //create a hint 
         const hint = getHint(userGuess, targetNumber);
 
-        //create a guess entry this will be used to render a history of guesses
+        //create a guess entry that stores original user guess and corresponding hint
         const currGuess = {
             originalInput: userGuess,
             hint: hint,    
         };
     
-        //check for winning combination, if true set winner
+        //check for winning combination, if true set winner 
         if (hint === 'OOOO' || hint === 'OOOOO') {
             currGuess.hint = 'You are correct!';
             setWinner(!winner);
@@ -168,7 +168,6 @@ function StartGame({ difficulty, startGame }) {
           <li key={index}>You guessed: {originalInput} Hint: {hint}</li>
         ))}
       </ul>
-      
       </div>
       </div>
       {winner && <div>

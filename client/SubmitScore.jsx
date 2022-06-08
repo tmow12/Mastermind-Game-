@@ -19,7 +19,7 @@ function SubmitScore({ score, difficulty, startGame }) {
     }, [])
 
     /**
-     * This function accepts a an event. It creates a user profle, and submits it to the leaderboard
+     * This function accepts an event. It creates a user profle, and submits it to the leaderboard
      * @param {Object} e 
      */
    function submitToLeaderboard(e) {
