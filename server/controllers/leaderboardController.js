@@ -16,6 +16,7 @@ leaderboardController.getLeaders = (req, res, next) => {
     `
     db.query(text)
         .then(response => {
+        console.log('this is response after query', response);
         res.locals.leaderboard = response.rows;
         return next();
         })
