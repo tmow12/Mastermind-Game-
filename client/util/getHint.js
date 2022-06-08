@@ -15,8 +15,8 @@
             userHint+='O';
             continue;
         } else {
-            //check if number is invalid or number is in the wrong location 
-            //use a cache to keep track of numbers seen
+            //check if cuurent number is invalid or number is in the wrong location 
+            //use a cache to keep track of numbers seen it both the target number and users guess
             //if the current number is in the targetNumCache then we need to signal the user 
             //that they guessed a correct number but in the wrong location 
             //decrement number out of targetNumCache 

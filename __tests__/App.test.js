@@ -6,36 +6,37 @@ const App = require('../client/App.jsx').default;
 //need to include .default when importing React component 
 
 describe('Render App component', () => {
+  
   beforeEach(() => {
     render(<App />);
   })
 
-  test('Render Easy button', () => {
+  it('Render Easy button', () => {
     const easyButton = screen.getByTestId('easy-button-1');
     expect(easyButton).toBeInTheDocument();
     expect(easyButton).toHaveTextContent('Easy');
     expect(easyButton).toBeInTheDocument();
   })
 
-  test('Render Medium button', () => {
+  it('Render Medium button', () => {
     const mediumButton = screen.getByTestId('medium-button-1');
     expect(mediumButton).toBeInTheDocument();
     expect(mediumButton).toHaveTextContent('Medium');
     expect(mediumButton).toBeInTheDocument();
   })
 
-  test('Render Hard button', () => {
+  it('Render Hard button', () => {
     const hardButton = screen.getByTestId('hard-button-1');
     expect(hardButton).toBeInTheDocument();
     expect(hardButton).toHaveTextContent('Hard');
     expect(hardButton).toBeInTheDocument();
   })
 
-  test('Should not show the start button', () => {
+  it('Should not show the start button', () => {
     expect(screen.queryByTestId('start-button-1')).not.toBeInTheDocument();
   })
 
-  test('Should show start button when difficulty is selected', () => {
+  it('Should show start button when difficulty is selected', () => {
     const easyButton = screen.getByTestId('easy-button-1');
     const mediumButton = screen.getByTestId('medium-button-1');
     const hardButton = screen.getByTestId('hard-button-1');

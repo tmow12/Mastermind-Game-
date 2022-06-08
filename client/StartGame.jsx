@@ -55,6 +55,7 @@ function StartGame({ difficulty, startGame }) {
      * @param {Object} e 
      */
     function submitGuess(e) {
+        //prevent page from refreshing 
         e.preventDefault();
     
         let userGuess;
@@ -81,7 +82,7 @@ function StartGame({ difficulty, startGame }) {
             setWinner(!winner);
         }
 
-        //edge case here if no guessed numbers are correct, notify user to guess again
+        //edge case here if no numbers from the user correct, notify user to guess again
         if (hint === '') {
             currGuess.hint = 'Nice try. Guess a different number!';
         }
