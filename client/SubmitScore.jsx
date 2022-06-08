@@ -11,7 +11,7 @@ function SubmitScore({ score, difficulty, startGame }) {
  * This useEffect hook will fetch the leaderboard information on component mount
  */
     useEffect(() => {
-      fetch('http://localhost:3000/getLeaderboardScore')
+      fetch('https://mighty-ridge-64393.herokuapp.com/getLeaderboardScore')
       .then(res => res.json())
       .then(data => setLeaders(data))
     }, [])
@@ -29,7 +29,7 @@ function SubmitScore({ score, difficulty, startGame }) {
            difficulty: difficulty
        };
        
-       fetch('http://localhost:3000/submitToLeaderboard', {
+       fetch('https://mighty-ridge-64393.herokuapp.com/submitToLeaderboard', {
            method: 'POST',
            headers: {
                'Content-Type': 'application/json'
