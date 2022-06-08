@@ -10,7 +10,7 @@ module.exports = {
         path: path.resolve('dist'),
         filename: 'bundle.js',
     },
-    plugins: [new MiniCssExtractPlugin(), new HtmlWebpackPlugin({template: './dev.html'}), new Dotenv({ systemsvars: true })],
+    plugins: [new MiniCssExtractPlugin(), new HtmlWebpackPlugin({template: './dev.html'}), new Dotenv({ systemvars: true })],
     module: {
         rules: [
             {
