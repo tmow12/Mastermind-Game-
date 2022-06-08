@@ -44,7 +44,7 @@ API documentation: https://www.random.org/clients/http/api/
 • Leaderboard [X] </br>
 • Configurable difficulty level [X] </br>
 • Restart functionality [X] </br>
-• Easter Egg :) [X] </br>
+• Easter Egg [X] </br>
 
 # Future Improvements
 • Expand testing suites </br>
