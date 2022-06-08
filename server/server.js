@@ -15,6 +15,14 @@ app.use('/', apiRouters);
 
 app.use((req, res) => res.status(404).send('This is not the page you\'re looking for...'));
 
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('../dist'))
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, '../dist/index.html'))
+    })
+}
+
 app.use((err, req, res, next) => {
     const defaultErr = {
         log: 'Express error handler caught unknown middleware error',

@@ -8,7 +8,8 @@
     "build": "cross-env NODE_ENV=production webpack",
     "dev": "concurrently \"cross-env NODE_ENV=development webpack serve --open\" \"cross-env NODE_ENV=development nodemon server/start.js\"",
     "test": "jest --verbose",
-    "doc": "jsdoc -c jsdoc.json"
+    "doc": "jsdoc -c jsdoc.json",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build"
   },
   "repository": {
     "type": "git",
