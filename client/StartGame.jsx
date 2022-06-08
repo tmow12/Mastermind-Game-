@@ -176,7 +176,7 @@ function StartGame({ difficulty, startGame }) {
           <SubmitScore score={score} difficulty={difficulty} startGame={startGame}/>
           </div>}
       {history.length === startingGuesses && winner === false && <div>
-      <div>You lost...the Secret number was {targetNumber}</div>
+      <div>You lost...the secret number was {targetNumber}</div>
       <button onClick={startGame}>Restart Game</button>
       </div>
       }
