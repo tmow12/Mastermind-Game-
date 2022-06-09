@@ -1,6 +1,6 @@
 # Mastermind-Game
 This is a web app recreation of the code-breaking game Mastermind.
-This version substitutes numbers for colors. Read more about Mastermind here: [https://en.wikipedia.org/wiki/Mastermind_(board_game)](https://en.wikipedia.org/wiki/Mastermind_(board_game))
+This version substitutes colors for numbers. Read more about Mastermind here: [https://en.wikipedia.org/wiki/Mastermind_(board_game)](https://en.wikipedia.org/wiki/Mastermind_(board_game))
 
 # Technologies Used
 • React </br>
