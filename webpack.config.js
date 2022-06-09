@@ -29,17 +29,6 @@ module.exports = {
                         loader: 'file-loader',
                 }]
             },
-            // {
-            //     test: /\.s?[ac]ss$/i,
-            //     exclude: /node_modules/,
-            //     use: [
-            //       process.env.NODE_ENV === 'production'
-            //         ? MiniCssExtractPlugin.loader
-            //         : 'style-loader',
-            //       'css-loader',
-            //       'sass-loader',
-            //     ],
-            //   },
         ],
     },
     devServer: {

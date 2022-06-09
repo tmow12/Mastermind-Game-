@@ -7,9 +7,9 @@ function SubmitScore({ score, difficulty, startGame }) {
     const [pokemon, setPokemon] = useState();
     const [disable, setDisable] = useState(false);
 
-/**
- * This useEffect hook will fetch the leaderboard information on component mount
- */
+    /**
+    * This useEffect hook will fetch the leaderboard information on component mount
+    */
     useEffect(() => {
       fetch('https://mighty-ridge-64393.herokuapp.com/getLeaderboardScore')
       .then(res => res.json())
