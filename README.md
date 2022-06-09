@@ -22,6 +22,7 @@ To run locally, clone repo and navigate to the root directory and run the follow
 `npm install` </br>
 `npm run build` </br>
 `npm run start` </br>
+View project in (http://localhost:3000/) </br>
 For security purposes the .env file is git ignored. You will need need to contact me for DB_URI</br>
 
 # Game Rules
