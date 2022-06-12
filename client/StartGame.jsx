@@ -39,19 +39,21 @@ function StartGame({ difficulty, startGame }) {
     const startingGuesses = settings[difficulty].guesses;
 
     /**
-     * This useEffect hook will generate a random number for the user to guess
+     * This useEffect hook will generate a random number for the user to guess on component mount
      */
     useEffect(() => {
         fetch(`https://www.random.org/integers/?num=${digitLength}&min=0&max=${maxIntLength}&col=4&base=10&format=plain&rnd=new`)            
         .then(response => response.text())
         .then(data => data.replace(/\s/g, ''))                
-        .then(data => setTargetNumber(data))
+        .then(num => {
+            setTargetNumber(num);
+        })
     }, [])
 
-    console.log('targetnumber is', targetNumber)
-
+    console.log('targetnumber is', targetNumber);
+    
     /**
-     * This function accepts an event and will submit a user guess and checks for a winning guess
+     * This function accepts an form submission event and will submit a user guess and checks for a winning guess
      * @param {Object} e 
      */
     function submitGuess(e) {
@@ -66,7 +68,7 @@ function StartGame({ difficulty, startGame }) {
         } else {
             userGuess = [input1, input2, input3, input4, input5].join('');
         }
-        
+
         //create a hint 
         const hint = getHint(userGuess, targetNumber);
 
@@ -156,8 +158,7 @@ function StartGame({ difficulty, startGame }) {
         </input>}
       <button 
       className='submit-guess-button' 
-      disabled={history.length === startingGuesses || winner === true}
-      data-testid='submit-guess-button-1'>
+      disabled={history.length === startingGuesses || winner === true}>
           Submit
           </button>
       </form>

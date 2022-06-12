@@ -63,8 +63,6 @@ After I achieved my MVP, the next feature I worked on was a configurable difficu
 
 I also added an easter egg for users who successfully beat the game. Play to find out what it is :)
 
-Like most web applications, I followed a MVC pattern during development. However, I quickly realized that this project will naturally be frontend heavy. Ideally, I would have moved most of the functional logic to the backend, but it seemed unnecessary in this case. For larger at scale applications the distinct separation into a MVC would allow for a more organized code base. 
-
 # Testing
 This project uses Jest, Supertest, and React Testing Library for TDD. Navigate to root directory of project and </br>
 run `npm run test` in terminal to view unit tests

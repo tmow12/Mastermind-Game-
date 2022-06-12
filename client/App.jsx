@@ -16,7 +16,7 @@ function App() {
   if (start === true) {
       return (
         <div>
-            <StartGame difficulty={difficulty} startGame={startGame} data-testid='start-game-component'/>
+            <StartGame difficulty={difficulty} startGame={startGame} />
         </div>
       )
   }
@@ -30,20 +30,17 @@ function App() {
     <div className='difficulty-container'>
     <button 
     onClick={()=> setDifficulty('Easy')} 
-    className='easy-button' 
-    data-testid='easy-button-1'>
+    className='easy-button'>
       Easy
       </button>
     <button 
     onClick={()=> setDifficulty('Medium')} 
-    className='medium-button'
-    data-testid='medium-button-1'>
+    className='medium-button'>
       Medium
       </button>
     <button 
     onClick={()=> setDifficulty('Hard')} 
-    className='hard-button'
-    data-testid='hard-button-1'>
+    className='hard-button'>
       Hard
       </button>
     </div>
@@ -55,8 +52,7 @@ function App() {
             </div>
           <button 
           onClick={startGame} 
-          className='start-button'
-          data-testid='start-button-1'>
+          className='start-button'>
             Start!
             </button>
           </div>

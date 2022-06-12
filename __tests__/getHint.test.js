@@ -31,6 +31,6 @@ describe('Determines correct hint', () => {
     }) 
 
     it(`Expect guess '0000', and target number '4433' to equal ''`, () => {
-        expect(getHint('1111', '4443')).toEqual('');
-      }) 
+      expect(getHint('1111', '4443')).toEqual('');
+    }) 
 })
